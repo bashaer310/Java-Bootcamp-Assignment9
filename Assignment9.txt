@@ -1,0 +1,81 @@
+Q1:
+
+Output:
+Hey from message1
+Description:
+Spring called many methods to perform (getMessage1()), because added before the method (@Bean) annotation.  
+the returned value from the method (1) will be stored in Spring Container. 
+
+Q2:
+
+Output:
+Hey from message1 
+Hey from message2
+Description:
+Spring always will be performed (getMessage(2)) after (getMessage1()), because added (@Qualifier) annotation in (getMessage(2)) parameter which linked with (@Qualifier) annotation of (getMessage(1)).
+So Spring needs to take the returned value of (getMessage1()) and send it to the argument of (getMessage2()).  
+The returned values from the methods (1, date) will be stored in Spring Container.   
+
+Q3:
+
+Output:
+Hey from message1
+Hey from message3
+Hey from message2
+Or
+Hey from message3
+Hey from message1
+Hey from message2
+Or
+Hey from message3
+Hey from message2
+Hey from message1
+
+
+Description:
+We don’t know if Spring performs (getMessage1()) before (getMessage3()) or the opposite, but (getMessage(2)) always will be performed after (getMessage3()), because Spring needs to take the returned value of (getMessage3()) and send it to the argument of (getMessage2()). 
+The returned values from the methods (1, date, 3) will be stored in Spring Container.  
+
+
+Q4:
+
+Output:
+Hey from message1
+Hey from message3
+Hey from message2
+Or
+Hey from message3
+Hey from message1
+Hey from message2
+Or
+Hey from message3
+Hey from message2
+Hey from message1
+
+Description:
+We don’t know if Spring performs (getMessage1()) before (getMessage3()) or the opposite, but (getMessage2()) always will be performed after (getMessage3()), because Spring needs to take the returned value of (getMessage3()), and send it to the argument of (getMessage2()).
+The returned values from the methods (1, date, 3) will be stored in Spring Container. 
+Note: Spring doesn’t perform (mainController), because it’s not added (@Bean) annotation before the method.
+
+
+Q5:
+
+Output:
+Hey from message1
+Hey from message3
+Hey from message2
+Or
+Hey from message3
+Hey from message1
+Hey from message2
+Or
+Hey from message3
+Hey from message2
+Hey from message1
+
+Description:
+We don’t know if Spring performs (getMessage1()) before (getMessage3()) or the opposite, but (getMessage2()) always will be performed after (getMessage3()), because Spring needs to take the returned value of (getMessage3()), and send it to the argument of (getMessage2()).
+The returned values from the methods (1, date, 3) will be stored in Spring Container. 
+Note: Spring doesn’t perform (mainController), because it’s not added (@Bean) annotation before the method, but if added, it should be performed after getMessage3() and getMessage2().
+
+  
